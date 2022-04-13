@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SportingEventsApp.Models.Atleta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Atletas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-dark">Create New</a>
+</p>
+
+<form asp-action="Index">
+    <p>
+        Nome: <input type="text" name="SearchString" />
+        <input type="submit" value="Buscar" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modalidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NivelExperiencia)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modalidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NivelExperiencia)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning">Detalhes</a> | 
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

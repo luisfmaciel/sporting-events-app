@@ -1,0 +1,48 @@
+﻿@model SportingEventsApp.Models.Evento
+
+@{
+    var lista = new List<SportingEventsApp.Models.Atleta>();
+
+    if (Model.Atletas != null)
+    {
+        lista = Model.Atletas
+        .OrderByDescending(a => a.DataConfirmacao)
+        .ToList();
+    }
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Modalidade</th>
+            <th>Nível de Experiência</th>
+            <th>Data de Confirmação</th>
+            <th>Evento ID</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in lista) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modalidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NivelExperiencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataConfirmacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventoId)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
